@@ -11,7 +11,7 @@ function createDummyFile(file: File): File {
 
 bluredFilter
 
-export class BluredFilter {
+export class Class {
     private readonly canvas: HTMLCanvasElement;
     private readonly context: CanvasRenderingContext2D;
     private readonly image: HTMLImageElement;
