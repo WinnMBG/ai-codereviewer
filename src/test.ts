@@ -8,3 +8,5 @@ function createDummyFile(file: File): File {
 
   return dummyFile;
 }
+
+bluredFilter
