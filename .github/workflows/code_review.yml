@@ -9,6 +9,18 @@ jobs:
   code_review:
     runs-on: ubuntu-latest
     steps:
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Launch tests
+        run: npm run test
+
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Code Review
