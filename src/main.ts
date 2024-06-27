@@ -23,7 +23,7 @@ interface PRDetails {
   description: string;
 }
 
-async function getPRDetails(): Promise<PRDetails> {
+export async function getPRDetails(): Promise<PRDetails> {
   const { repository, number } = JSON.parse(
     readFileSync(process.env.GITHUB_EVENT_PATH || "", "utf8")
   );
@@ -41,7 +41,7 @@ async function getPRDetails(): Promise<PRDetails> {
   };
 }
 
-async function getDiff(
+export async function getDiff(
   owner: string,
   repo: string,
   pull_number: number
@@ -56,7 +56,7 @@ async function getDiff(
   return response.data;
 }
 
-async function analyzeCode(
+export async function analyzeCode(
   parsedDiff: File[],
   prDetails: PRDetails
 ): Promise<Array<{ body: string; path: string; line: number }>> {
@@ -78,7 +78,7 @@ async function analyzeCode(
   return comments;
 }
 
-function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
+export function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
   return `Your task is to review pull requests. Instructions:
 - Provide the response in following JSON format:  {"reviews": [{"lineNumber":  <line_number>, "reviewComment": "<review comment>"}]}
 - Do not give positive comments or compliments.
@@ -110,7 +110,7 @@ ${chunk.changes
 `;
 }
 
-async function getAIResponse(prompt: string): Promise<Array<{
+export async function getAIResponse(prompt: string): Promise<Array<{
   lineNumber: string;
   reviewComment: string;
 }> | null> {
@@ -146,7 +146,7 @@ async function getAIResponse(prompt: string): Promise<Array<{
   }
 }
 
-function createComment(
+export function createComment(
   file: File,
   chunk: Chunk,
   aiResponses: Array<{
@@ -166,7 +166,7 @@ function createComment(
   });
 }
 
-async function createReviewComment(
+export async function createReviewComment(
   owner: string,
   repo: string,
   pull_number: number,
@@ -181,7 +181,7 @@ async function createReviewComment(
   });
 }
 
-async function main() {
+export async function main() {
   const prDetails = await getPRDetails();
   let diff: string | null;
   const eventData = JSON.parse(
