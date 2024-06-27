@@ -3,7 +3,7 @@ import * as core from '@actions/core';
 import { Octokit } from '@octokit/rest';
 import OpenAI from 'openai';
 import { File } from 'parse-diff';
-import { getPRDetails, getDiff, analyzeCode, createReviewComment, main } from './main';
+import { getPRDetails, getDiff, analyzeCode, createReviewComment, main } from '../main';
 
 // Mocking dependencies
 jest.mock('fs');
@@ -85,15 +85,17 @@ describe('main.ts', () => {
   describe('analyzeCode', () => {
     it('should return comments for code analysis', async () => {
       const parsedDiff: File[] = [{
-        to: 'file.txt',
-        chunks: [{
-          changes: [],
-          content: 'chunk content',
-          newLines: 5,
-          oldLines: 5,
-          newStart: 1,
-          oldStart: 1,
-        }],
+          to: 'file.txt',
+          chunks: [{
+              changes: [],
+              content: 'chunk content',
+              newLines: 5,
+              oldLines: 5,
+              newStart: 1,
+              oldStart: 1,
+          }],
+          deletions: 0,
+          additions: 0
       }];
 
       const prDetails = {

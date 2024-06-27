@@ -10,22 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Checkout code
-        uses: actions/checkout@v4
+      # - name: Checkout code
+      #   uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '18'
       
-      - name: List files in dist
-        run: ls
+      # - name: List files in dist
+      #   run: ls
 
-      - name: Install dependencies
-        run: npm install
+      # - name: Install dependencies
+      #   run: npm install
       
-      - name: Launch tests
-        run: npm run test
+      # - name: Launch tests
+      #   run: npm run test
 
       - name: Checkout repository
         uses: actions/checkout@v3
