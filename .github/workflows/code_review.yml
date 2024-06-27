@@ -16,7 +16,7 @@ jobs:
           node-version: '18'
       
       - name: List files in dist
-        run: ls -al dist
+        run: ls
 
       - name: Install dependencies
         run: npm install
